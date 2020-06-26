@@ -1,0 +1,11 @@
+apiVersion: oilapp.hmxq.top/v1
+kind: OilappService
+metadata:
+  name: example-oilappservice
+spec:
+  size: 2
+  image: tomcat:8.5-jdk11-openjdk
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 35001
