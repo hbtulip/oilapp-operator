@@ -201,7 +201,10 @@ func (r *ReconcileOilappService) Reconcile(request reconcile.Request) (reconcile
 		if err := r.client.Get(context.TODO(), request.NamespacedName, oldService); err != nil {
 			return reconcile.Result{}, err
 		}
+
+		clusterip := oldService.Spec.ClusterIP
 		oldService.Spec = newService.Spec
+		oldService.Spec.ClusterIP = clusterip
 		if err := r.client.Update(context.TODO(), oldService); err != nil {
 			return reconcile.Result{}, err
 		}
